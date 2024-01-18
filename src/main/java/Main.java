@@ -1,12 +1,18 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
+        List<Integer> array = Arrays.asList(2, 4, 5, 6, 7, 4, 67, 23, 4, 1, 1, 8, 45, 67);
+
         task1(948);
-        task2(Arrays.asList(2, 4, 5, 6, 7, 4, 67, 23, 4, 1, 1, 8, 45, 67));
+        task2(array);
+        System.out.println(" ");
+        System.out.println("-------------------------Task 3------------------------------------");
+        task3(array);
     }
 
     private static <T> void printAllItemsOfArray(ArrayList<T> array) {
@@ -68,7 +74,33 @@ public class Main {
         printAllItemsOfArray(numbers);
     }
 
-    public static void task3(int num) {
+    public static void task3(List<Integer> numbers) {
+        task3_1(numbers);
+        task3_2(numbers);
+        task3_3(numbers);
+    }
 
+    private static void task3_1(List<Integer> numbers){
+        Stream<Integer> stream = numbers.stream();
+
+        int sum = stream.mapToInt(Integer::intValue).sum();
+        System.out.println("Sum of all numbers: " + sum);
+    }
+
+    private static void task3_2(List<Integer> numbers){
+        Stream<Integer> stream = numbers.stream();
+
+        String str = stream.map(num -> num * 2)
+                .map(Object::toString)
+                .collect(Collectors.joining(", "));
+
+        System.out.println("Double all numbers: " + str);
+    }
+
+    private static void task3_3(List<Integer> numbers){
+        Stream<Integer> stream = numbers.stream();
+
+        Optional<Integer> maxNumber = stream.max(Integer::compareTo);
+        System.out.println("Max number: " + maxNumber.get());
     }
 }
