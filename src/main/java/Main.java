@@ -78,6 +78,7 @@ public class Main {
         task3_1(numbers);
         task3_2(numbers);
         task3_3(numbers);
+        task3_4(numbers);
     }
 
     private static void task3_1(List<Integer> numbers){
@@ -102,5 +103,14 @@ public class Main {
 
         Optional<Integer> maxNumber = stream.max(Integer::compareTo);
         System.out.println("Max number: " + maxNumber.get());
+    }
+
+    private static void task3_4(List<Integer> numbers){
+        Stream<Integer> stream = numbers.stream();
+
+        String str = stream.filter(num -> num % 2 == 1).map(Object::toString)
+                .collect(Collectors.joining(", "));
+
+        System.out.println("Odd numbers: " + str);
     }
 }
