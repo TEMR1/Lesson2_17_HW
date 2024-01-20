@@ -1,7 +1,5 @@
 import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Main {
@@ -79,6 +77,7 @@ public class Main {
         task3_2(numbers);
         task3_3(numbers);
         task3_4(numbers);
+        task3_5(numbers);
     }
 
     private static void task3_1(List<Integer> numbers){
@@ -112,5 +111,15 @@ public class Main {
                 .collect(Collectors.joining(", "));
 
         System.out.println("Odd numbers: " + str);
+    }
+
+    private static void task3_5(List<Integer> numbers){
+        Stream<Integer> stream = numbers.stream();
+
+        int sum = stream.mapToInt(Integer::intValue).sum();
+        int count = numbers.size();
+        double average = sum / count;
+
+        System.out.println("Average: " + average);
     }
 }
